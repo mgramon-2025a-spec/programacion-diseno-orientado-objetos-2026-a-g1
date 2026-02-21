@@ -1,0 +1,14 @@
+@startuml
+    class Persona{
+        - NumeroDocumento
+        # Peso
+        # Estatura
+        # Edad
+        + Nombre
+        # Genero
+        + Caminar()
+        + Comer()
+        + Dormir()
+        + Escuchar()
+    }
+@enduml
