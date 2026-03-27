@@ -1,0 +1,27 @@
+Asi quedo bien: En la clase Persona yo decidí colocar los atributos que son comunes para todos (documento, nombre y
+correo) porque son datos básicos que cualquier persona dentro del sistema debe tener, además puse validaciones mínimas
+para que no se acepten valores vacíos o incorrectos (por ejemplo, que el documento no sea negativo y que el correo
+tenga un @); esto lo hice porque si no se controla desde el inicio después se pueden generar errores más grandes en las
+subclases (como Administrativo o Docente); también agregué el método ficha() que devuelve un resumen con toda la
+información, ya que me parece útil para imprimir y verificar rápido los datos sin tener que llamar cada getter por
+separado.
+En las subclases (como Docente y Administrativo) lo que hice fue agregar lo específico de cada rol, en el caso del
+Docente la asignatura (porque no todos los profesores explican las mismas materias, sino que depende del área que
+domine), y en el caso del Administrativo el cargo (porque este lo diferencia de otras subclases). Cada subclase tiene
+su propio constructor que llama a super() para inicializar lo común y luego inicializa lo particular, así se aprovecha
+la herencia y no se repite código; también agregué métodos fichaDocente() y fichaAdministrativo() que extienden la
+ficha base de Persona y añaden la parte específica, de esa forma se puede ver todo en un solo lugar y no me toca volver
+a copiar todo; la idea de organizarlo así es que si algún día necesito crear otra subclase (por ejemplo Estudiante) no
+tengo que volver a escribir documento, nombre y correo, simplemente heredo de Persona y agrego lo que sea propio de
+Estudiante.
+Con esto puedo concluir que lo común está en Persona (porque aplica para todos) y lo específico quedó en cada hija
+(porque solo aplica a ese tipo), y así se cumple la relación “es-un” (un Docente es una Persona, un Administrativo es
+una Persona) y el código queda más ordenado aunque al principio me confundí con los getters y setters porque cuando
+empezaba a escribirlos me mandaba error hasta que me di cuenta que pasaba mientras los terminaba.
+
+Esto aparece al ejecutar el código:
+Persona {documento=87265, nombre=María Pérez, correo=maríaP@gmail.com}
+Persona {documento=13135, nombre=Margarita Rodrigo, correo=rmrgarita@gmail.com}, Docente {asignatura=Matemáticas}
+Persona {documento=12132, nombre=Daniel Lopez, correo=dlopez@gmail.com}, Administrativo {cargo =Contador}
+
+Process finished with exit code 0
