@@ -1,0 +1,25 @@
+En la clase base Envio yo coloqué los atributos comunes (código y pesoKg) porque todos los envíos necesitan
+identificarse y tener un peso, además puse validaciones mínimas (para que no se acepten valores vacíos o negativos), ya
+que eso podría romper el cálculo del costo; también agregué el método costo() en la clase padre, pero lo dejé con una
+implementación genérica (devuelve 0) (porque la idea es que las subclases lo sobrescriban con sus propios datos), y
+añadí el método resumen() (para mostrar la información básica del envío).
+En las subclases lo que hice fue agregar lo específico de cada tipo de envío, en el caso del EnvioEstandar la fórmula de
+costo es más sencilla (8000 + peso2000), en el caso del EnvioExpress es más caro porque es más rápido
+(15000 + peso3500), y en el caso del EnvioInternacional además de calcular el costo (30000 + peso*6000) agregué el
+atributo país (porque solo aplica a envíos fuera del país). Cada subclase sobrescribe costo() y resumen() usando
+@Override (para cambiar el comportamiento heredado).
+La ventaja de hacerlo así es que puedo tener una lista de tipo Envio y guardar en ella envíos estándar, express e
+internacionales, y cuando recorro la lista y llamo costo() cada objeto calcula su costo correctamente sin necesidad de
+preguntar con if qué tipo es. Esto hace el código más limpio y fácil de extender, porque si mañana creo otro tipo de
+envío (por ejemplo EnvioUrgente) solo tengo que sobrescribir costo() y resumen() y ya funciona dentro de la misma lista.
+En conclusión lo común está en la clase Envio y lo específico en cada subclase, y el polimorfismo permite que un mismo
+método se comporte distinto según el objeto real.
+
+Esto aparece al ejecutar el código:
+
+Envio {código =7667564, peso =5.0}, tipo = Estandar, costo = 10005.0
+Envio {código =6454543, peso =2.0}tipo = Express, costo = 22000.0
+Envio {código =1233355, peso =6.3}tipo = Internacional, destino =Italia, costo =67800.0
+Costo total =99805.0
+
+Process finished with exit code 0
